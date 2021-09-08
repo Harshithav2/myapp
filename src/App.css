@@ -92,3 +92,15 @@
   color: red;
   font-size: 11px;
 }
+.dashboard-header {
+  background-color: pink;
+  height: 40px;
+  color: darkcyan;
+  display: flex;
+  justify-content: center;
+}
+.dash-head-content{
+  border: none;
+  color: darkcyan;
+  background: pink;
+}

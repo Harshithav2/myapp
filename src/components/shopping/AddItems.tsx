@@ -1,13 +1,24 @@
 import React, { ChangeEvent, useState } from 'react';
+import { onAddItem } from '../service/item.service';
 
 const AddItems = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
-  const [itemImage, setItemImage] = useState<any>('');
+  const [image, setItemImage] = useState<any>('');
 
   const imageUpload = (e: ChangeEvent<HTMLInputElement>) => {
-    setItemImage(e.target.files[0]);
+    setItemImage(e.target.files![0]);
+  }
+
+  const submitAddItem = async (event: React.FormEvent) => {
+    event.preventDefault();
+    await onAddItem({
+      name,
+      description,
+      price,
+      image
+    });
   }
 
   return (
@@ -29,9 +40,9 @@ const AddItems = () => {
           </div>
           <div className="row form-group">
             <label className="text-info">Photo:</label>
-            <input type="file" value={itemImage} onChange={(e) => imageUpload(e)}/>
+            <input type="file" accept="image/*" value={image} onChange={(e) => imageUpload(e)}/>
           </div>
-          <button type="submit" data-testid='login-button' name="submit" className="btn btn-primary login-btn" >Login</button>
+          <button type="submit" data-testid='login-button' name="submit" onClick={submitAddItem} className="btn btn-primary login-btn" >add item</button>
         </div>
       </div>
     </div>

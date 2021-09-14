@@ -16,3 +16,17 @@ export const onAddItem = async (data: Item) => {
     return { error: 'cannot add item' };
   }
 };
+
+export const ItemList = async () => {
+  const requestConfig: AxiosRequestConfig = {
+    method: 'get',
+    url: `${environment.API_URL}/items`,
+    withCredentials: true
+  };
+  try {
+    const { data } = await axios.request(requestConfig);
+    return data;
+  } catch (e) {
+    console.error(e);
+  };
+};

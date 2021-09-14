@@ -24,7 +24,7 @@ const AddItems = () => {
   return (
     <div>
       <div className="login-container">
-        <div data-testid='login-test' className='login-form'>
+        <div data-testid='login-test' className='add-items-form'>
           <h3 className="text-center text-info">Add items</h3>
           <div className="row form-group">
             <label className="text-info">Name:</label>

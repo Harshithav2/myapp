@@ -52,11 +52,11 @@ const Dashboard = () => {
           <DialogContent dividers>
             <AddItems />
           </DialogContent>
-          <DialogActions>
+          {/* <DialogActions>
             <Button autoFocus onClick={handleClose} color="primary">
               Save changes
             </Button>
-          </DialogActions>
+          </DialogActions> */}
         </Dialog>
       </div>
       <ListItems />

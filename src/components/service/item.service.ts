@@ -2,13 +2,13 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { environment } from '../environment/environment';
 import { Item } from '../schema/item.schems';
 
-export const onAddItem = async (data: Item) => {
+export const onAddItem = async (data: any) => {
   const requestConfig: AxiosRequestConfig = {
     method: 'post',
     url: `${environment.API_URL}/addItems`,
+    withCredentials: true,
     data
   };
-
   try {
     await axios.request(requestConfig);
   } catch (e) {

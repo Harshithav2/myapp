@@ -20,12 +20,9 @@ const ListItems = () => {
           <div className="row">
             {data.map((items: Item) => (
               <div key={items.id} className="col-sm">
-                {/* <div>
-                  <video width="320" height="240" controls>
-                    <source src={items.videoUrl}>
-                    </source>
-                  </video>
-                </div> */}
+                <div>
+                  <img alt='no imag' src={items.image} width="320" height="240" />
+                </div>
                 <div>
                   <h5 className="title" data-testid='workoutTitle'>{items.name}</h5>
                   Description: <p className="description">{items.description}</p>

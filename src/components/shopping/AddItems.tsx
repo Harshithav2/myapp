@@ -1,24 +1,27 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { useState } from 'react';
 import { onAddItem } from '../service/item.service';
 
 const AddItems = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
-  const [image, setItemImage] = useState<any>('');
+  const [image, setItemImage] = useState<any>(null);
 
-  const imageUpload = (e: ChangeEvent<HTMLInputElement>) => {
-    setItemImage(e.target.files![0]);
+  const imageUpload = async (e: any) => {
+    const file = e.target.files[0];
+    setItemImage(file);
   }
 
   const submitAddItem = async (event: React.FormEvent) => {
     event.preventDefault();
-    await onAddItem({
-      name,
-      description,
-      price,
-      image
-    });
+    const formData = new FormData();
+    formData.append('price',price);
+    formData.append('name',name);
+    formData.append('description',description);
+    formData.append('image',image);
+    await onAddItem(
+      formData
+    );
   }
 
   return (
@@ -40,7 +43,7 @@ const AddItems = () => {
           </div>
           <div className="row form-group">
             <label className="text-info">Photo:</label>
-            <input type="file" accept="image/*" value={image} onChange={(e) => imageUpload(e)}/>
+            <input type="file" name='image' accept="image/png, image/jpeg" onChange={imageUpload} />
           </div>
           <button type="submit" data-testid='login-button' name="submit" onClick={submitAddItem} className="btn btn-primary login-btn" >add item</button>
         </div>

@@ -9,8 +9,24 @@ const AddItems = () => {
 
   const imageUpload = async (e: any) => {
     const file = e.target.files[0];
-    setItemImage(file);
+    const base64 = await convertBase64(file);
+    setItemImage(base64);
   }
+
+  const convertBase64 = (file: any) => {
+    return new Promise((resolve, reject) => {
+      const filReader = new FileReader();
+      filReader.readAsDataURL(file);
+
+      filReader.onload = () => {
+        resolve(filReader.result);
+      };
+
+      filReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
 
   const submitAddItem = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -45,6 +61,7 @@ const AddItems = () => {
             <label className="text-info">Photo:</label>
             <input type="file" name='image' accept="image/png, image/jpeg" onChange={imageUpload} />
           </div>
+          <img src={image} alt='no imag' />
           <button type="submit" data-testid='login-button' name="submit" onClick={submitAddItem} className="btn btn-primary login-btn" >add item</button>
         </div>
       </div>

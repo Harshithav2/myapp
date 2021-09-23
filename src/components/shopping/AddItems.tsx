@@ -5,6 +5,7 @@ const AddItems = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
+  const [quantity, setQuantity] = useState('');
   const [image, setItemImage] = useState<any>(null);
 
   const imageUpload = async (e: any) => {
@@ -33,10 +34,11 @@ const AddItems = () => {
     const formData = new FormData();
     formData.append('price',price);
     formData.append('name',name);
+    formData.append('quantity',quantity);
     formData.append('description',description);
     formData.append('image',image);
     await onAddItem(
-      formData
+      formData,
     );
   }
 
@@ -56,6 +58,10 @@ const AddItems = () => {
           <div className="row form-group">
             <label className="text-info">Price:</label>
             <input className="col-sm-8 form-control" type="text" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Enter Price" />
+          </div>
+          <div className="row form-group">
+            <label className="text-info">Quantity:</label>
+            <input className="col-sm-8 form-control" type="text" value={quantity} onChange={(e) => setQuantity(e.target.value)} placeholder="Enter Quantity" />
           </div>
           <div className="row form-group">
             <label className="text-info">Photo:</label>

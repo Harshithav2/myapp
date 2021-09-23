@@ -27,7 +27,10 @@ const ListItems = () => {
               <div>
                 <h5 className="title" data-testid='workoutTitle'>{items.name}</h5>
                 Description: <p className="description">{items.description}</p>
+                Quantity: <p className="description">{items.quantity}</p>
               </div>
+              {items.quantity >= 1 ? (
+                <button>Add to cart</button>) : ''}
             </div>
           ))}
 
